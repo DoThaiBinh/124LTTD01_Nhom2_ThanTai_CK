@@ -3,6 +3,7 @@ package com.example.ck_nhom2_thantai;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class profiles extends AppCompatActivity {
     private ImageButton bt_load;
+    private Button add,xoa,sua;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +26,9 @@ public class profiles extends AppCompatActivity {
             return insets;
         });
 
-        bt_load = findViewById(R.id.Load_hoso);
-
-
+        add=findViewById(R.id.btnAdd);
+        add=findViewById(R.id.btnDelete);
+        add=findViewById(R.id.btnEdit);
 
         //load về
         bt_load.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +39,8 @@ public class profiles extends AppCompatActivity {
                 finish();
             }
         });
+
+
         //Thêm giao diện đây chỉ để tạm thời
     }
 }
