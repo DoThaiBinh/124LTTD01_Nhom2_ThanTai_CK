@@ -1,6 +1,7 @@
 package com.example.ck_nhom2_thantai.apiService;
 
 import com.example.ck_nhom2_thantai.object.Danhmuc;
+import com.example.ck_nhom2_thantai.object.NGUOIDUNG;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -33,6 +34,8 @@ public interface ApiService {
 
     @GET("getKhoanChi")
     Call<List<Danhmuc>> getKhoanChi(@Query("Idnguoidung") String Idnguoidung);
+    @GET("GetAllUsers")
+    Call<List<NGUOIDUNG>> GetAllUsers();
     @GET("getKhoanThu")
     Call<List<Danhmuc>> getKhoanThu(@Query("Idnguoidung") String Idnguoidung);
     @GET("getAllDanMuc")

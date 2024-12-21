@@ -2,7 +2,7 @@ package com.example.ck_nhom2_thantai.object;
 
 public class NGUOIDUNG {
     public String tennguoidung;
-    public String username;
+    public String idnguoidung;
 
     public String getTennguoidung() {
         return tennguoidung;
@@ -12,16 +12,19 @@ public class NGUOIDUNG {
         this.tennguoidung = tennguoidung;
     }
 
-    public String getUsername() {
-        return username;
+    public String getIdnguoidung() {
+        return idnguoidung;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setIdnguoidung(String idnguoidung) {
+        this.idnguoidung = idnguoidung;
     }
 
-    public NGUOIDUNG(String tennguoidung, String username) {
+    public NGUOIDUNG(String tennguoidung, String idnguoidung) {
         this.tennguoidung = tennguoidung;
-        this.username = username;
+        this.idnguoidung = idnguoidung;
+    }
+
+    public NGUOIDUNG() {
     }
 }
