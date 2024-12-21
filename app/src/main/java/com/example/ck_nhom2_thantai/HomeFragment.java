@@ -7,6 +7,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.ck_nhom2_thantai.apiService.ApiService;
+import com.example.ck_nhom2_thantai.object.NGUOIDUNG;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +26,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-
+    private TextView huy, binh, tam;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,6 +61,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -58,7 +71,51 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        Button btnNavigate = view.findViewById(R.id.profile);
+        huy = view.findViewById(R.id.huy);
+        binh = view.findViewById(R.id.binh);
+        tam = view.findViewById(R.id.tam);
+
+        btnNavigate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().beginTransaction()
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        return view;
     }
+    private void fetchAllUsers() {
+        Call<List<NGUOIDUNG>> call= ApiService.apiService.GetAllUsers();
+
+
+        call.enqueue(new Callback<List<NGUOIDUNG>>() {
+            @Override
+            public void onResponse(Call<List<NGUOIDUNG>> call, Response<List<NGUOIDUNG>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<NGUOIDUNG> users = response.body();
+                    if (!users.isEmpty()) {
+                        // Hiển thị tên của ba người dùng đầu tiên (nếu có)
+                        huy.setText(users.size() > 0 ? users.get(0).getTennguoidung() : "N/A");
+                        binh.setText(users.size() > 1 ? users.get(1).getTennguoidung() : "N/A");
+                        tam.setText(users.size() > 2 ? users.get(2).getTennguoidung() : "N/A");
+                    } else {
+                        Toast.makeText(getContext(), "No users found", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<NGUOIDUNG>> call, Throwable t) {
+                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }
