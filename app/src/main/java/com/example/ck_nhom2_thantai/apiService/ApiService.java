@@ -64,11 +64,6 @@ public interface ApiService {
             @Query("sdt") String sdt,
             @Query("hinh") String hinh
     );
-//huy
-
-
-//tâm
-
 
 }
 
