@@ -46,10 +46,12 @@ public class HomeFragment extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        fetchAllUsers();
         Button btnNavigate = findViewById(R.id.profile);
         huy = findViewById(R.id.huy);
         binh = findViewById(R.id.binh);
         tam = findViewById(R.id.tam);
+
         btnNavigate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

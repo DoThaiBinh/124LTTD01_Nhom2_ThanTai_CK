@@ -29,6 +29,7 @@ public class profiles extends AppCompatActivity {
         add=findViewById(R.id.btnAdd);
         add=findViewById(R.id.btnDelete);
         add=findViewById(R.id.btnEdit);
+        bt_load=findViewById(R.id.btnBack);
 
         //load về
         bt_load.setOnClickListener(new View.OnClickListener() {
