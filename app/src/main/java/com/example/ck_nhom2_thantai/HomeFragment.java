@@ -90,8 +90,6 @@ public class HomeFragment extends Fragment {
     }
     private void fetchAllUsers() {
         Call<List<NGUOIDUNG>> call= ApiService.apiService.GetAllUsers();
-
-
         call.enqueue(new Callback<List<NGUOIDUNG>>() {
             @Override
             public void onResponse(Call<List<NGUOIDUNG>> call, Response<List<NGUOIDUNG>> response) {
